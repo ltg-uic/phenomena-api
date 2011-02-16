@@ -6,7 +6,8 @@ package ltg.ps.api;
 import org.dom4j.Element;
 
 /**
- * TODO Description
+ * Represents a generic command.
+ * This interface can be implemented to create more specific command types.
  *
  * @author Gugo
  */

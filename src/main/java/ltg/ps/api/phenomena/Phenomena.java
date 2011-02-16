@@ -12,11 +12,8 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * This class is the representation of a generic phenomena (a
- * meta-phenomena).
- * When you need to create a new one extend this class.
- * See the "supported phenomena" section in the documentation 
- * for a detailed list of what kind of phenomena are currently supported.  
+ * Represents a generic phenomenon type.
+ * All phenomena in the server extend this class.  
  *
  * @author Gugo
  */
@@ -25,9 +22,9 @@ public abstract class Phenomena extends Observable {
 	// Logger
 	protected final Logger log = LoggerFactory.getLogger(Phenomena.class);
 	
-	// Name of the phenomena
+	// Phenomenon's unique ID
 	protected String instanceName = null;
-	// Phenomena windows
+	// Phenomenon's windows
 	protected List<PhenomenaWindow> phenWindows = null;
 	// Is the phenomena being served?
 	protected Boolean running = false;
@@ -43,9 +40,9 @@ public abstract class Phenomena extends Observable {
 	
 	
 	/**
-	 * Assigns the name to the phenomena instance. 
+	 * Assigns a unique ID to the phenomenon. 
 	 * Please use a meaningful names for the instances 
-	 * like "[PhenomenaName]@[School/Class]".
+	 * like "[PhenomenaName]_[School/Class]".
 	 * @param instanceId
 	 */
 	public Phenomena(String instanceId) {
@@ -55,9 +52,16 @@ public abstract class Phenomena extends Observable {
 	}
 	
 	
+	
+	/**
+	 * Returns the phenomena's unique ID
+	 *
+	 * @return phenomenon's unique ID
+	 */
 	public String getInstanceName() {
 		return instanceName;
 	}
+	
 	
 	
 	public List<PhenomenaWindow> getWindows() {
@@ -65,35 +69,48 @@ public abstract class Phenomena extends Observable {
 	}
 	
 	
+	
 	public synchronized boolean isRunning() {
 		return running;
 	}
 		
 	
+	
     /**
-     * This method must be implemented as synchronized
-     * TODO Description
-     *
+     * Starts the phenomenon.
+     * This method must be implemented as synchronized!
      */
 	public abstract void start();
 	
 	
+	
 	/**
-	 * This method must be implemented as synchronized
-	 * TODO Description
-	 *
+	 * Stops the phenomenon.
+	 * This method must be implemented as synchronized!
 	 */
 	public abstract void stop();
 	
 	
+	
+	/**
+	 * Configures the phenomenon using XML.
+	 * Once a particular phenomenon instance has been created, 
+	 * it must be populated with data. This method uses XML to load 
+	 * data into the phenomenon instance. For more information on the XML 
+	 * syntax please refer to to the Phenomena Server documentation.
+	 *
+	 * @param configXML XML data used to configure the phenomena instance
+	 */
 	abstract public void configure(String configXML);
 	
 	
+	
 	/**
-	 * Restores the state of the phenomenon according to local data.
-	 * This is used when the server is booted and the state of the phenomena needs to be restored
-	 * according to the persisted local data. This is dependent on the persistence
-	 * method the desinger of the phenomena is using.
+	 * Restores the phenomenon instance to the last persisted state. 
+	 * This is used when the server is booted and the phenomenon's state 
+	 * needs to be restored according to the persisted local data. 
+	 * This, of course, depends on the persistence mechanism the 
+	 * phenomenon's designer is using. 
 	 */
 	abstract public void restore();
 

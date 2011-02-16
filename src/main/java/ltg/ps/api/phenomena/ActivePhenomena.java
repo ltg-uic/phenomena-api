@@ -5,27 +5,33 @@ package ltg.ps.api.phenomena;
 
 
 /**
- * TODO Description
+ * This kind of phenomena updates its state by itself with a 
+ * regular interval, in addition to changes coming from the web
+ * portal and the clients. 
  *
  * @author Gugo
  */
-public abstract class PushPhenomena extends Phenomena {
+public abstract class ActivePhenomena extends Phenomena {
 
-	// Simulation updater
+	// State updater
 	private PhenomenaUpdater updater = null;
 
 
+	
 	/**
+	 * Assigns a unique ID to the phenomenon. 
+	 * Please use a meaningful names for the instances 
+	 * like "[PhenomenaName]_[School/Class]".
 	 * @param instanceId
 	 */
-	public PushPhenomena(String instanceId) {
+	public ActivePhenomena(String instanceId) {
 		super(instanceId);
 	}
 
 
 
 	/**
-	 * Inner class whose only duty is to update the phenomena model.
+	 * Inner class whose only duty is to update the phenomenon state.
 	 * This class never changes because the update cycle is the same 
 	 * for all the phenomena.
 	 *
@@ -37,7 +43,7 @@ public abstract class PushPhenomena extends Phenomena {
 		private int sleepTime = 5;
 
 		/**
-		 * Builds a thread with a certain name.
+		 * Private constructor: only ActivePhenomena can instantiate this class.
 		 * @param thread name
 		 */
 		private PhenomenaUpdater(String id) {
@@ -47,8 +53,7 @@ public abstract class PushPhenomena extends Phenomena {
 
 		/**
 		 * This performs the main update cycle. 
-		 * The cycle is: update, notify the observers and
-		 * then finally sleep for a while.
+		 * The cycle is: update, notify the observers, sleep for a while.
 		 */
 		public void run() {
 			while(running) {
@@ -59,8 +64,8 @@ public abstract class PushPhenomena extends Phenomena {
 					break;
 				}
 				// Notifies the observers (if any)
-				PushPhenomena.this.setChanged();
-				PushPhenomena.this.notifyObservers();
+				ActivePhenomena.this.setChanged();
+				ActivePhenomena.this.notifyObservers();
 				// Sleeps for a while
 				try {
 					sleep(sleepTime*1000);
@@ -72,6 +77,7 @@ public abstract class PushPhenomena extends Phenomena {
 
 	}
 
+	
 
 	/**
 	 * Starts serving the phenomena. This means updated
@@ -102,23 +108,37 @@ public abstract class PushPhenomena extends Phenomena {
 	}
 	
 
+	
+	/**
+	 * Returns the sleepTime of the phenomenon in seconds.
+	 * This is the interval (in seconds) the phenomenon
+	 * is inactive between self updates. 
+	 *
+	 * @return sleep time in seconds
+	 */
 	public synchronized int getSleepTime() {
 		return updater.sleepTime;
 	}
 
 
+	
 	/**
-	 * Sets the sleep time in seconds.
-	 * @param sleepTime sleep time
+	 * Sets the sleep time of the phenomenon in seconds.
+	 * This is the interval (in seconds) the phenomenon
+	 * is inactive between self updates.
+	 * 
+	 * @param sleepTime sleep time in seconds
 	 */
 	public synchronized void setSleepTime(int sleepTime) {
 		updater.sleepTime = sleepTime;
 	}
 	
 
+	
 	@Override
 	abstract public void configure(String configXML);
 
+	
 
 	@Override
 	abstract public void restore();
@@ -126,9 +146,9 @@ public abstract class PushPhenomena extends Phenomena {
 
 
 	/**
-	 * This function is called once for update cycle and is
+	 * This function is called once for every update cycle and is
 	 * in charge of actually performing the update of the 
-	 * model (i.e. data stored in the class). 
+	 * state of the phenomenon (i.e. data stored in the class). 
 	 */
 	abstract protected void update() throws InterruptedException;
 

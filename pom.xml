@@ -5,7 +5,6 @@
   <groupId>ltg</groupId>
   <artifactId>phenomena-api</artifactId>
   <name>Embedded Phenomena API</name>
-  <version>0.1</version>
  
   <dependencies>
   	<dependency>
@@ -37,6 +36,7 @@
   	</dependency>
   </dependencies>
   
+  <version>1.0</version>
   <build>
         <plugins>
             <plugin>
