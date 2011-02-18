@@ -93,13 +93,24 @@ public abstract class Phenomena extends Observable {
 	
 	
 	/**
+	 * Associates some windows to the phenomenon using XML.
+	 * Once a particular phenomenon instance has been created, 
+	 * its windows must be configured.
+	 *
+	 * @param configXML XML data used to configure the phenomenon windows
+	 */
+	abstract public void configureWindows(String configXML);
+	
+	
+	
+	/**
 	 * Configures the phenomenon using XML.
 	 * Once a particular phenomenon instance has been created, 
 	 * it must be populated with data. This method uses XML to load 
 	 * data into the phenomenon instance. For more information on the XML 
 	 * syntax please refer to to the Phenomena Server documentation.
 	 *
-	 * @param configXML XML data used to configure the phenomena instance
+	 * @param configXML XML data used to configure the phenomenon instance
 	 */
 	abstract public void configure(String configXML);
 	
