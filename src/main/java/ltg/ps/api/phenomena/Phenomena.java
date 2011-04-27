@@ -124,5 +124,15 @@ public abstract class Phenomena extends Observable {
 	 * phenomenon's designer is using. 
 	 */
 	abstract public void restore();
+	
+	
+	
+	/**
+	 * Removes all data relative to the phenomenon instance.
+	 * This function is called immediately before the server removes 
+	 * this phenomenon instance. The type of cleanup necessary depends, of course,
+	 * on the persistence mechanism used.
+	 */
+	abstract public void cleanup();
 
 }
