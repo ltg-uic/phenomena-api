@@ -15,6 +15,8 @@ public abstract class ActivePhenomena extends Phenomena {
 
 	// State updater
 	private PhenomenaUpdater updater = null;
+	// Sleep time in seconds
+	private int sleepTime = 5;
 
 
 	
@@ -38,9 +40,6 @@ public abstract class ActivePhenomena extends Phenomena {
 	 * @author Gugo
 	 */
 	private final class PhenomenaUpdater extends Thread {
-
-		// Sleep time in seconds
-		private int sleepTime = 5;
 
 		/**
 		 * Private constructor: only ActivePhenomena can instantiate this class.
@@ -117,7 +116,7 @@ public abstract class ActivePhenomena extends Phenomena {
 	 * @return sleep time in seconds
 	 */
 	public synchronized int getSleepTime() {
-		return updater.sleepTime;
+		return sleepTime;
 	}
 
 
@@ -130,7 +129,7 @@ public abstract class ActivePhenomena extends Phenomena {
 	 * @param sleepTime sleep time in seconds
 	 */
 	public synchronized void setSleepTime(int sleepTime) {
-		updater.sleepTime = sleepTime;
+		this.sleepTime = sleepTime;
 	}
 	
 
