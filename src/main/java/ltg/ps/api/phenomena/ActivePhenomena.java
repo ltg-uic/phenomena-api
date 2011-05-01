@@ -87,7 +87,6 @@ public abstract class ActivePhenomena extends Phenomena {
 			this.updater = new PhenomenaUpdater(instanceName);
 			running = true;
 			updater.start();
-			log.info("Started "+this.instanceName);
 		}
 	}
 
@@ -102,7 +101,6 @@ public abstract class ActivePhenomena extends Phenomena {
 			running = false;
 			updater.interrupt();
 			updater = null;
-			log.info("Stopped "+this.instanceName);
 		}
 	}
 	
