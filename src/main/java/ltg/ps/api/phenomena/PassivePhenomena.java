@@ -43,7 +43,7 @@ public abstract class PassivePhenomena extends Phenomena {
 	
 	
 	@Override
-	public synchronized void notifyObservers() {
+	public void notifyObservers() {
 		this.setChanged();
 		super.notifyObservers();
 	}

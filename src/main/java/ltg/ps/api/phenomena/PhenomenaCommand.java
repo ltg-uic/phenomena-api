@@ -3,6 +3,9 @@
  */
 package ltg.ps.api.phenomena;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ltg.ps.api.Command;
 
 
@@ -13,7 +16,10 @@ import ltg.ps.api.Command;
  */
 public abstract class PhenomenaCommand implements Command{
 	
+	// Logger
+	protected Logger log = LoggerFactory.getLogger(this.getClass());
 	
+	// Target phenomena
 	protected Phenomena target = null;
 	
 	
