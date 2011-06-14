@@ -6,6 +6,9 @@ package ltg.ps.api.phenomena;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * This class describes a window you can have on a meta-phenomena.
@@ -18,8 +21,9 @@ import java.util.Observer;
  * @author Gugo
  */
 abstract public class PhenomenaWindow implements Observer {
-	// Used to propagate updates over the net
-	//protected NetworkController net = NetworkController.getInstance();
+	
+	// Logger
+	protected Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	// Name of the phenomena
 	protected String windowId = null;

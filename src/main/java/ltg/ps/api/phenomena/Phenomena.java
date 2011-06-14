@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class Phenomena extends Observable {
 
 	// Logger
-	protected final Logger log = LoggerFactory.getLogger(Phenomena.class);
+	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	// Phenomenon's unique ID
 	protected String instanceName = null;
