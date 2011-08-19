@@ -27,9 +27,10 @@ public abstract class PhenomenaCommand implements Command{
 	 * Constructor.
 	 * The phenomena passed as input is in charge of handling this command.
 	 * 
-	 * @param target Phenomena that will handle the command.
+	 * @param target Phenomena that will handle the command
+	 * @param from The window that generated the command
 	 */
-	public PhenomenaCommand(Phenomena target) {
+	public PhenomenaCommand(Phenomena target, String from) {
 		this.target = target;
 	}
 

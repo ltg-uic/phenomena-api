@@ -6,8 +6,8 @@ package ltg.ps.api.phenomena;
 
 /**
  * This kind of phenomena updates its state by itself with a 
- * regular interval, in addition to changes coming from the web
- * portal and the clients. 
+ * regular interval (5 seconds by default), in addition to the
+ * changes coming from the web portal and the clients. 
  *
  * @author Gugo
  */
@@ -58,7 +58,7 @@ public abstract class ActivePhenomena extends Phenomena {
 			while(running) {
 				// Updates the phenomena
 				try {
-					update();
+					updatePhenomena();
 				} catch (InterruptedException e) {
 					break;
 				}
@@ -147,7 +147,7 @@ public abstract class ActivePhenomena extends Phenomena {
 	 * in charge of actually performing the update of the 
 	 * state of the phenomenon (i.e. data stored in the class). 
 	 */
-	abstract protected void update() throws InterruptedException;
+	abstract protected void updatePhenomena() throws InterruptedException;
 
 
 }

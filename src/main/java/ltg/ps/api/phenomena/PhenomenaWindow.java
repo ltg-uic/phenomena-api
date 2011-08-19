@@ -33,7 +33,7 @@ abstract public class PhenomenaWindow implements Observer {
 	 * Assigns the name to the window. 
 	 * Please use a meaningful name for the window 
 	 * like "[ComputerName/FormFactor]>[PhenomenaInstance]".
-	 * @param instanceName
+	 * @param windowName
 	 */
 	public PhenomenaWindow(String windowName) {
 		// TODO before this check this is unique!!!
