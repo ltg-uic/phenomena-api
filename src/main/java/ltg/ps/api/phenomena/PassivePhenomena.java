@@ -39,14 +39,6 @@ public abstract class PassivePhenomena extends Phenomena {
 	public synchronized void stop() {
 		running = false;
 	}
-	
-	
-	
-	@Override
-	public void notifyObservers() {
-		this.setChanged();
-		super.notifyObservers();
-	}
 
 	
 	

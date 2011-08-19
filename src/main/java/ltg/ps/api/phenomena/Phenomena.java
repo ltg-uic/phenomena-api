@@ -73,6 +73,14 @@ public abstract class Phenomena extends Observable {
 	public synchronized boolean isRunning() {
 		return running;
 	}
+	
+	
+	
+	@Override
+	public void notifyObservers() {
+		this.setChanged();
+		super.notifyObservers();
+	}
 		
 	
 	
