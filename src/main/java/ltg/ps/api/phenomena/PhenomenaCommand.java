@@ -21,6 +21,8 @@ public abstract class PhenomenaCommand implements Command{
 	
 	// Target phenomena
 	protected Phenomena target = null;
+	// Origin of the command
+	protected String from = null;
 	
 	
 	/**
@@ -32,6 +34,7 @@ public abstract class PhenomenaCommand implements Command{
 	 */
 	public PhenomenaCommand(Phenomena target, String from) {
 		this.target = target;
+		this.from = from;
 	}
 
 }
