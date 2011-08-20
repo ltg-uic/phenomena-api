@@ -22,7 +22,7 @@ public abstract class PhenomenaCommand implements Command{
 	// Target phenomena
 	protected Phenomena target = null;
 	// Origin of the command
-	protected String from = null;
+	protected PhenomenaWindow origin = null;
 	
 	
 	/**
@@ -30,11 +30,11 @@ public abstract class PhenomenaCommand implements Command{
 	 * The phenomena passed as input is in charge of handling this command.
 	 * 
 	 * @param target Phenomena that will handle the command
-	 * @param from The window that generated the command
+	 * @param origin The window that generated the command
 	 */
-	public PhenomenaCommand(Phenomena target, String from) {
+	public PhenomenaCommand(Phenomena target, PhenomenaWindow origin) {
 		this.target = target;
-		this.from = from;
+		this.origin = origin;
 	}
 
 }
