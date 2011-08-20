@@ -12,8 +12,8 @@ import org.dom4j.Element;
  * @author Gugo
  */
 public interface Command {
+	
 	public void execute();
 	public void parse(Element xml);
-	public String toXML();
 
 }
